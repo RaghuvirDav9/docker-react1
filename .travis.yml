@@ -8,3 +8,17 @@ before_install:
 
 script:
   - docker run -e CI=true docker_1 npm run test
+
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-south-1"
+  app: "docker"
+  env: "Docker-env"
+  bucket_name: "elasticbeanstalk-ap-south-1-558114105035"
+  bucket_path: "docker"
+  on:
+    branch: master
+  access_key_id: $access_key_id
+  secret_access_key:
+    secure: "$secret_access_key"
